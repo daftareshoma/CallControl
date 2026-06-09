@@ -52,7 +52,7 @@ namespace Daftareshoma.CallControlSample.Services
 
         private static void SendCommand(string request,string commandId, CommandTypeEnum commandType)
         {
-            var pskToken = "PSK MuMDb1kF2pl4p+WnK2ESw+puoEpTeWBLJUjs/EXEQdXLO7qQUDEQXnrMnsFN5YDm/SytmBBAkncX1uEGNGKruCGbtoRbHV/mp8qGu5TS86yiAeoiM2Qgvs0r4GLCmSwwolSYs/OI3BF4WpbiF92e90AJ8+45JKZ50nxdWLqCp6IBF3V51XkBULGu7gzeQsYDgPr4PFaU9hSlJZGeS+pBjROc7mItAknUH3caMJx/VdGn/wRYUy1fzkkuFYPa2uI3";
+            var pskToken = "YOUR_ACTUAL_TOKEN_HERE";
 
             using (var httpClient = new HttpClient())
             {
