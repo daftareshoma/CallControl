@@ -6,6 +6,11 @@ namespace Daftareshoma.CallControlSample.Services
 {
     public class CallCommandWebhook : ICallCommandWebhook
     {
+        private readonly CallControlSettings _callControlSettings;
+        public CallCommandWebhook(CallControlSettings callControlSettings)
+        {
+            _callControlSettings = callControlSettings;
+        }
         public void GetWebHookAndSendCommand(object input)
         {
             var inputString = JsonConvert.SerializeObject(input);
@@ -50,13 +55,13 @@ namespace Daftareshoma.CallControlSample.Services
             }
         }
 
-        private static void SendCommand(string request,string commandId, CommandTypeEnum commandType)
+        private void SendCommand(string request,string commandId, CommandTypeEnum commandType)
         {
-            var pskToken = "YOUR_ACTUAL_TOKEN_HERE";
+            var pskToken = _callControlSettings.Token;
 
             using (var httpClient = new HttpClient())
             {
-                var url = $"https://192.168.1.133:7200/api/CallControl/CommandManager/v1/{commandId}/{commandType}";
+                var url = $"{_callControlSettings.BaseUrl}/api/CallControl/CommandManager/v1/{commandId}/{commandType}";
 
                 var httpRequest = new HttpRequestMessage(HttpMethod.Post, url);
                 httpRequest.Headers.Add("Authorization", pskToken);
